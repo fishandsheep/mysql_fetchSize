@@ -16,34 +16,34 @@ public class MyController {
     MyDao myDao;
 
     @GetMapping("/all")
-    public String getAll() {
+    public List<Map<String, Object>> getAll() {
         List<Map<String, Object>> maps = myDao.selectAll();
         for (Map<String, Object> map : maps) {
             Object id = map.get("id");
             Object largeBlob = map.get("large_blob");
             System.out.println(id + ":" + largeBlob);
         }
-        return String.valueOf(maps.size());
+        return maps;
     }
 
     @GetMapping("/fetch")
-    public String getAllFetch() {
+    public List<Map<String, Object>> getAllFetch() {
         List<Map<String, Object>> maps = myDao.selectAllByFetch();
         for (Map<String, Object> map : maps) {
             Object id = map.get("id");
             Object largeBlob = map.get("large_blob");
             System.out.println(id + ":" + largeBlob);
         }
-        return String.valueOf(maps.size());
+        return maps;
     }
 
 
     @GetMapping("/stream")
-    public int stream() {
+    public List<Map<String, Object>> stream() {
         MyResultHandler resultHandler = new MyResultHandler();
         myDao.selectAll(resultHandler);
         int count = resultHandler.getCount();
-        return count;
+        return resultHandler.getRes();
     }
 
 }
