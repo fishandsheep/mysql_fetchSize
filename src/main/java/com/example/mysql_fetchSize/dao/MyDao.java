@@ -11,4 +11,7 @@ public interface MyDao {
     List<Map<String, Object>> selectAll();
 
     void selectAll(ResultHandler<Map<String, Object>> resultHandler);
+
+    List<Map<String, Object>> selectAllByFetch();
+
 }

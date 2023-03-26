@@ -23,8 +23,20 @@ public class MyController {
             Object largeBlob = map.get("large_blob");
             System.out.println(id + ":" + largeBlob);
         }
-        return "all";
+        return String.valueOf(maps.size());
     }
+
+    @GetMapping("/fetch")
+    public String getAllFetch() {
+        List<Map<String, Object>> maps = myDao.selectAllByFetch();
+        for (Map<String, Object> map : maps) {
+            Object id = map.get("id");
+            Object largeBlob = map.get("large_blob");
+            System.out.println(id + ":" + largeBlob);
+        }
+        return String.valueOf(maps.size());
+    }
+
 
     @GetMapping("/stream")
     public int stream() {

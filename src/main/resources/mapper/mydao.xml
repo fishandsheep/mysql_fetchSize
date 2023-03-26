@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mysql_fetchSize.dao.MyDao">
     <select id="selectAll" resultType="java.util.Map">
-        SELECT * FROM large_table
+        SELECT * FROM large_table limit 0,100000
     </select>
+
+    <select id="selectAllByFetch" resultType="java.util.Map" fetchSize="10">
+        SELECT * FROM large_table limit 0,100000
+    </select>
+
 </mapper>
